@@ -66,7 +66,7 @@ constexpr double kUploadReportTimeoutSeconds = 60;
 //! should be retrieved via CrashReportDatabase::GetSettings().
 class Settings {
  public:
-  static inline constexpr char kLockfileExtension[] = ".__lock__";
+  static inline constexpr wchar_t kLockfileExtension[] = L".__lock__";
 
   Settings();
 

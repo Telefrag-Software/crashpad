@@ -1,0 +1,3 @@
+include_guard()
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${CRASHPAD_UTIL_SOURCE_FILES})

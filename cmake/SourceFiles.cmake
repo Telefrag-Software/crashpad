@@ -1,0 +1,427 @@
+include_guard()
+
+# TODO: missing files?
+set(CRASHPAD_COMPAT_SOURCE_FILES_WINDOWS
+	compat/win/strings.cc
+	compat/win/time.cc
+	compat/win/time.h
+)
+
+set(CRASHPAD_COMPAT_SOURCE_FILES_LINUX
+	compat/linux/sys/mman.cc
+	compat/linux/sys/mman.h
+)
+
+list(APPEND CRASHPAD_COMPAT_SOURCE_FILES ${CRASHPAD_COMPAT_SOURCE_FILES_${PLATFORM_UPPER}})
+
+set(CRASHPAD_UTIL_SOURCE_FILES
+	util/file/delimited_file_reader.cc
+	util/file/delimited_file_reader.h
+	util/file/directory_reader.h
+	util/file/file_helper.cc
+	util/file/file_helper.h
+	util/file/file_io.cc
+	util/file/file_io.h
+	util/file/file_reader.cc
+	util/file/file_reader.h
+	util/file/file_seeker.cc
+	util/file/file_seeker.h
+	util/file/file_writer.cc
+	util/file/file_writer.h
+	util/file/filesystem.h
+	util/file/output_stream_file_writer.cc
+	util/file/output_stream_file_writer.h
+	util/file/scoped_remove_file.cc
+	util/file/scoped_remove_file.h
+	util/file/string_file.cc
+	util/file/string_file.h
+	util/misc/initialization_state_dcheck.cc
+	util/misc/initialization_state_dcheck.h
+	util/misc/lexing.cc
+	util/misc/lexing.h
+	util/misc/metrics.cc
+	util/misc/metrics.h
+	util/misc/pdb_structures.cc
+	util/misc/pdb_structures.h
+	util/misc/random_string.cc
+	util/misc/random_string.h
+	util/misc/range_set.cc
+	util/misc/range_set.h
+	util/misc/reinterpret_bytes.cc
+	util/misc/reinterpret_bytes.h
+	util/misc/scoped_forbid_return.cc
+	util/misc/scoped_forbid_return.h
+	util/misc/time.cc
+	util/misc/time.h
+	util/misc/uuid.cc
+	util/misc/uuid.h
+	util/misc/zlib.cc
+	util/misc/zlib.h
+	util/net/http_body.cc
+	util/net/http_body.h
+	util/net/http_body_gzip.cc
+	util/net/http_body_gzip.h
+	util/net/http_multipart_builder.cc
+	util/net/http_multipart_builder.h
+	util/net/http_transport.cc
+	util/net/http_transport.h
+	util/net/url.cc
+	util/net/url.h
+	util/numeric/checked_address_range.cc
+	util/numeric/checked_address_range.h
+	util/process/process_memory.cc
+	util/process/process_memory.h
+	util/process/process_memory_range.cc
+	util/process/process_memory_range.h
+	util/stdlib/aligned_allocator.cc
+	util/stdlib/aligned_allocator.h
+	util/stdlib/string_number_conversion.cc
+	util/stdlib/string_number_conversion.h
+	util/stdlib/strlcpy.cc
+	util/stdlib/strlcpy.h
+	util/stdlib/strnlen.cc
+	util/stdlib/strnlen.h
+	util/string/split_string.cc
+	util/string/split_string.h
+	util/stream/zlib_output_stream.cc
+	util/stream/zlib_output_stream.h
+	util/thread/thread.cc
+	util/thread/thread.h
+	util/thread/thread_log_messages.cc
+	util/thread/thread_log_messages.h
+	util/thread/worker_thread.cc
+	util/thread/worker_thread.h
+)
+
+set(CRASHPAD_UTIL_SOURCE_FILES_WINDOWS
+	util/file/directory_reader_win.cc
+	util/file/file_io_win.cc
+	util/file/filesystem_win.cc
+	util/misc/capture_context_win.asm
+	util/misc/clock_win.cc
+	util/misc/paths_win.cc
+	util/misc/time_win.cc
+	util/net/http_transport_win.cc
+	util/process/process_memory_win.cc
+	util/synchronization/semaphore_win.cc
+	util/thread/thread_win.cc
+	util/win/command_line.cc
+	util/win/critical_section_with_debug_info.cc
+	util/win/exception_handler_server.cc
+	util/win/get_function.cc
+	util/win/get_module_information.cc
+	util/win/handle.cc
+	util/win/initial_client_data.cc
+	util/win/module_version.cc
+	util/win/nt_internals.cc
+	util/win/ntstatus_logging.cc
+	util/win/process_info.cc
+	util/win/registration_protocol_win.cc
+	util/win/safe_terminate_process.asm
+	util/win/scoped_handle.cc
+	util/win/scoped_local_alloc.cc
+	util/win/scoped_process_suspend.cc
+	util/win/scoped_set_event.cc
+	util/win/session_end_watcher.cc
+)
+
+set(CRASHPAD_UTIL_SOURCE_FILES_LINUX
+	util/file/directory_reader_posix.cc
+	util/file/file_io_posix.cc
+	util/file/filesystem_posix.cc
+	util/misc/clock_posix.cc
+	util/posix/close_stdio.cc
+	util/posix/scoped_dir.cc
+	util/posix/scoped_mmap.cc
+	util/posix/signals.cc
+	util/synchronization/semaphore_posix.cc
+	util/thread/thread_posix.cc
+	util/posix/close_multiple.cc
+	util/posix/double_fork_and_exec.cc
+	util/posix/drop_privileges.cc
+	util/posix/symbolic_constants_posix.cc
+	util/net/http_transport_socket.cc
+	util/linux/auxiliary_vector.cc
+	util/linux/direct_ptrace_connection.cc
+	util/linux/exception_handler_client.cc
+	util/linux/exception_handler_protocol.cc
+	util/linux/memory_map.cc
+	util/linux/proc_stat_reader.cc
+	util/linux/proc_task_reader.cc
+	util/linux/ptrace_broker.cc
+	util/linux/ptrace_client.cc
+	util/linux/ptracer.cc
+	util/linux/scoped_pr_set_dumpable.cc
+	util/linux/scoped_pr_set_ptracer.cc
+	util/linux/scoped_ptrace_attach.cc
+	util/linux/socket.cc
+	util/linux/thread_info.cc
+	util/misc/capture_context_linux.S.cc
+	util/misc/paths_linux.cc
+	util/posix/process_info_linux.cc
+	util/process/process_memory_linux.cc
+	util/process/process_memory_sanitized.cc
+)
+
+# TODO: output preprocesser files
+set(CRASHPAD_UTIL_SOURCE_FILES_MACOS
+	util/file/directory_reader_posix.cc
+	util/file/file_io_posix.cc
+	util/file/filesystem_posix.cc
+	util/misc/clock_posix.cc
+	util/posix/close_stdio.cc
+	util/posix/scoped_dir.cc
+	util/posix/scoped_mmap.cc
+	util/posix/signals.cc
+	util/synchronization/semaphore_posix.cc
+	util/thread/thread_posix.cc
+	util/posix/close_multiple.cc
+	util/posix/double_fork_and_exec.cc
+	util/posix/drop_privileges.cc
+	util/posix/symbolic_constants_posix.cc
+	util/mac/launchd.cc
+	util/mac/mac_util.cc
+	util/mac/service_management.cc
+	util/mac/xattr.cc
+	util/mach/child_port_handshake.cc
+	util/mach/child_port_server.cc
+	util/mach/composite_mach_message_server.cc
+	util/mach/exc_client_variants.cc
+	util/mach/exc_server_variants.cc
+	util/mach/exception_behaviors.cc
+	util/mach/exception_ports.cc
+	util/mach/exception_types.cc
+	util/mach/mach_extensions.cc
+	util/mach/mach_message.cc
+	util/mach/mach_message_server.cc
+	util/mach/notify_server.cc
+	util/mach/scoped_task_suspend.cc
+	util/mach/symbolic_constants_mach.cc
+	util/mach/task_for_pid.cc
+	util/misc/capture_context_mac.S.cc
+	util/misc/clock_mac.cc
+	util/misc/paths_mac.cc
+	util/net/http_transport_mac.cc
+	util/posix/process_info_mac.cc
+	util/process/process_memory_mac.cc
+	util/synchronization/semaphore_mac.cc
+)
+
+list(APPEND CRASHPAD_UTIL_SOURCE_FILES ${CRASHPAD_UTIL_SOURCE_FILES_${PLATFORM_UPPER}})
+
+if(APPLE)
+	set_property(SOURCE util/misc/capture_context_mac.S PROPERTY LANGUAGE C)
+elseif(UNIX)
+	set_property(SOURCE util/misc/capture_context_linux.S PROPERTY LANGUAGE C)
+endif()
+
+set(CRASHPAD_CLIENT_SOURCE_FILES
+	client/annotation.cc
+	client/annotation.h
+	client/annotation_list.cc
+	client/annotation_list.h
+	client/crash_report_database.cc
+	client/crash_report_database.h
+	client/crashpad_info.cc
+	client/crashpad_info.h
+	client/prune_crash_reports.cc
+	client/prune_crash_reports.h
+	client/settings.cc
+	client/settings.h
+)
+
+set(CRASHPAD_CLIENT_SOURCE_FILES_WINDOWS
+	client/crash_report_database_win.cc
+	client/crashpad_client_win.cc
+)
+
+set(CRASHPAD_CLIENT_SOURCE_FILES_LINUX
+	client/crashpad_client_linux.cc
+	client/client_argv_handling.cc
+	client/client_argv_handling.h
+	client/crashpad_info_note.S
+	client/crash_report_database_generic.cc
+)
+
+set(CRASHPAD_CLIENT_SOURCE_FILES_MACOS
+	client/crash_report_database_mac.cc
+	client/crashpad_client_mac.cc
+	client/simulate_crash_mac.cc
+)
+
+list(APPEND CRASHPAD_CLIENT_SOURCE_FILES ${CRASHPAD_CLIENT_SOURCE_FILES_${PLATFORM_UPPER}})
+
+if(LINUX)
+	set_property(SOURCE client/crashpad_info_note.S PROPERTY LANGUAGE C)
+endif()
+
+set(CRASHPAD_MINIDUMP_SOURCE_FILES
+	minidump/minidump_annotation_writer.cc
+	minidump/minidump_annotation_writer.h
+	minidump/minidump_byte_array_writer.cc
+	minidump/minidump_byte_array_writer.h
+	minidump/minidump_context_writer.cc
+	minidump/minidump_context_writer.h
+	minidump/minidump_crashpad_info_writer.cc
+	minidump/minidump_crashpad_info_writer.h
+	minidump/minidump_exception_writer.cc
+	minidump/minidump_exception_writer.h
+	minidump/minidump_extensions.cc
+	minidump/minidump_extensions.h
+	minidump/minidump_file_writer.cc
+	minidump/minidump_file_writer.h
+	minidump/minidump_handle_writer.cc
+	minidump/minidump_handle_writer.h
+	minidump/minidump_memory_info_writer.cc
+	minidump/minidump_memory_info_writer.h
+	minidump/minidump_memory_writer.cc
+	minidump/minidump_memory_writer.h
+	minidump/minidump_misc_info_writer.cc
+	minidump/minidump_misc_info_writer.h
+	minidump/minidump_module_crashpad_info_writer.cc
+	minidump/minidump_module_crashpad_info_writer.h
+	minidump/minidump_module_writer.cc
+	minidump/minidump_module_writer.h
+	minidump/minidump_rva_list_writer.cc
+	minidump/minidump_rva_list_writer.h
+	minidump/minidump_simple_string_dictionary_writer.cc
+	minidump/minidump_simple_string_dictionary_writer.h
+	minidump/minidump_stream_writer.cc
+	minidump/minidump_stream_writer.h
+	minidump/minidump_string_writer.cc
+	minidump/minidump_string_writer.h
+	minidump/minidump_system_info_writer.cc
+	minidump/minidump_system_info_writer.h
+	minidump/minidump_thread_id_map.cc
+	minidump/minidump_thread_id_map.h
+	minidump/minidump_thread_writer.cc
+	minidump/minidump_thread_writer.h
+	minidump/minidump_unloaded_module_writer.cc
+	minidump/minidump_unloaded_module_writer.h
+	minidump/minidump_user_stream_writer.cc
+	minidump/minidump_user_stream_writer.h
+	minidump/minidump_writable.cc
+	minidump/minidump_writable.h
+	minidump/minidump_writer_util.cc
+	minidump/minidump_writer_util.h
+)
+
+set(CRASHPAD_SNAPSHOT_SOURCE_FILES
+	snapshot/annotation_snapshot.cc
+	snapshot/annotation_snapshot.h
+	snapshot/capture_memory.cc
+	snapshot/capture_memory.h
+	snapshot/cpu_context.cc
+	snapshot/cpu_context.h
+	snapshot/crashpad_info_client_options.cc
+	snapshot/crashpad_info_client_options.h
+	snapshot/handle_snapshot.cc
+	snapshot/handle_snapshot.h
+	snapshot/memory_snapshot.cc
+	snapshot/memory_snapshot.h
+	snapshot/unloaded_module_snapshot.cc
+	snapshot/unloaded_module_snapshot.h
+	snapshot/minidump/exception_snapshot_minidump.cc
+	snapshot/minidump/exception_snapshot_minidump.h
+	snapshot/minidump/memory_snapshot_minidump.cc
+	snapshot/minidump/memory_snapshot_minidump.h
+	snapshot/minidump/minidump_annotation_reader.cc
+	snapshot/minidump/minidump_annotation_reader.h
+	snapshot/minidump/minidump_context_converter.cc
+	snapshot/minidump/minidump_context_converter.h
+	snapshot/minidump/minidump_simple_string_dictionary_reader.cc
+	snapshot/minidump/minidump_simple_string_dictionary_reader.h
+	snapshot/minidump/minidump_string_list_reader.cc
+	snapshot/minidump/minidump_string_list_reader.h
+	snapshot/minidump/minidump_string_reader.cc
+	snapshot/minidump/minidump_string_reader.h
+	snapshot/minidump/module_snapshot_minidump.cc
+	snapshot/minidump/module_snapshot_minidump.h
+	snapshot/minidump/process_snapshot_minidump.cc
+	snapshot/minidump/process_snapshot_minidump.h
+	snapshot/minidump/system_snapshot_minidump.cc
+	snapshot/minidump/system_snapshot_minidump.h
+	snapshot/minidump/thread_snapshot_minidump.cc
+	snapshot/minidump/thread_snapshot_minidump.h
+	#snapshot/x86/cpuid_reader.cc
+	#snapshot/x86/cpuid_reader.h
+)
+
+set(CRASHPAD_SNAPSHOT_SOURCE_FILES_WINDOWS
+	snapshot/win/capture_memory_delegate_win.cc
+	snapshot/win/cpu_context_win.cc
+	snapshot/win/exception_snapshot_win.cc
+	snapshot/win/memory_map_region_snapshot_win.cc
+	snapshot/win/module_snapshot_win.cc
+	snapshot/win/pe_image_annotations_reader.cc
+	snapshot/win/pe_image_reader.cc
+	snapshot/win/pe_image_resource_reader.cc
+	snapshot/win/process_reader_win.cc
+	snapshot/win/process_snapshot_win.cc
+	snapshot/win/process_subrange_reader.cc
+	snapshot/win/system_snapshot_win.cc
+	snapshot/win/thread_snapshot_win.cc
+	snapshot/crashpad_types/crashpad_info_reader.cc
+)
+
+set(CRASHPAD_SNAPSHOT_SOURCE_FILES_LINUX
+	snapshot/linux/cpu_context_linux.cc
+	snapshot/linux/debug_rendezvous.cc
+	snapshot/linux/exception_snapshot_linux.cc
+	snapshot/linux/process_reader_linux.cc
+	snapshot/linux/process_snapshot_linux.cc
+	snapshot/linux/system_snapshot_linux.cc
+	snapshot/linux/thread_snapshot_linux.cc
+	snapshot/sanitized/memory_snapshot_sanitized.cc
+	snapshot/sanitized/module_snapshot_sanitized.cc
+	snapshot/sanitized/process_snapshot_sanitized.cc
+	snapshot/sanitized/sanitization_information.cc
+	snapshot/sanitized/thread_snapshot_sanitized.cc
+	snapshot/posix/timezone.cc
+	snapshot/crashpad_types/crashpad_info_reader.cc
+	snapshot/crashpad_types/image_annotation_reader.cc
+	snapshot/elf/elf_dynamic_array_reader.cc
+	snapshot/elf/elf_image_reader.cc
+	snapshot/elf/elf_symbol_table_reader.cc
+	snapshot/elf/module_snapshot_elf.cc
+)
+
+set(CRASHPAD_SNAPSHOT_SOURCE_FILES_MACOS
+	snapshot/posix/timezone.cc
+	snapshot/mac/cpu_context_mac.cc
+	snapshot/mac/exception_snapshot_mac.cc
+	snapshot/mac/mach_o_image_annotations_reader.cc
+	snapshot/mac/mach_o_image_reader.cc
+	snapshot/mac/mach_o_image_segment_reader.cc
+	snapshot/mac/mach_o_image_symbol_table_reader.cc
+	snapshot/mac/module_snapshot_mac.cc
+	snapshot/mac/process_reader_mac.cc
+	snapshot/mac/process_snapshot_mac.cc
+	snapshot/mac/process_types.cc.cc
+	snapshot/mac/process_types/custom.cc
+	snapshot/mac/system_snapshot_mac.cc
+	snapshot/mac/thread_snapshot_mac.cc
+)
+
+list(APPEND CRASHPAD_SNAPSHOT_SOURCE_FILES ${CRASHPAD_SNAPSHOT_SOURCE_FILES_${PLATFORM_UPPER}})
+
+set(CRASHPAD_GETOPT_SOURCE_FILES_WINDOWS
+	third_party/getopt/getopt.cc
+	third_party/getopt/getopt.h
+)
+
+list(APPEND CRASHPAD_GETOPT_SOURCE_FILES ${CRASHPAD_GETOPT_SOURCE_FILES_${PLATFORM_UPPER}})
+
+set(CRASHPAD_TOOLS_SOURCE_FILES
+	tools/tool_support.cc
+	tools/tool_support.h
+)
+
+set(CRASHPAD_SOURCE_FILES
+	${CRASHPAD_COMPAT_SOURCE_FILES}
+	${CRASHPAD_UTIL_SOURCE_FILES}
+	${CRASHPAD_CLIENT_SOURCE_FILES}
+# TODO add more
+)
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${CRASHPAD_SOURCE_FILES})
